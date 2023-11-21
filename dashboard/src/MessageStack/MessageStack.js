@@ -13,7 +13,6 @@ class MessageContainer {
         this.processMessage = function (topic, message) {
             // message is Buffer
             let payload = message.toString();
-            //console.log(payload);
             let msg;
             try {
                 msg = JSON.parse(payload);
@@ -22,10 +21,11 @@ class MessageContainer {
                 console.log(error.message);
             }
 
-            if(msg !== null) {
-                for(let i=0; i<msg.e.length;i++) {
-                    let mac = msg.e[i].m.toLowerCase();
-                    let station = msg.st.toLowerCase();
+            if(msg !== null && msg[0] != null) {
+                const station = msg[0].mac;
+
+                for(let i=1; i<msg.length;i++) {
+                    let mac = msg[i].mac.toLowerCase();
                     if(this.stations.includes(station)) {
 
                     } else {
@@ -44,7 +44,7 @@ class MessageContainer {
                         }
                         // Insert new record
                         this.beacons[mac][station] = {
-                            rssi: parseInt(msg.e[i].r, 10),
+                            rssi: parseInt(msg[i].rssi, 10),
                             timestamp: Math.floor(Date.now() / 1000)
                         }
                     }

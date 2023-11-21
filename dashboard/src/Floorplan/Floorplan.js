@@ -1,5 +1,5 @@
 import React from 'react';
-import floor_image_file from '../img/appartment_floorplan.jpg';
+import floor_image_file from '../img/Floorplan.png';
 import './Floorplan.css';
 import Pin from './BeaconPin';
 import Station from '../Satellite/Satellite';
