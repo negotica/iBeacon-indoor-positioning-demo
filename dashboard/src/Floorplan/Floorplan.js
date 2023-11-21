@@ -59,7 +59,7 @@ class Floorimage extends React.Component {
         let beaconIcons;
         // Stations
         let sta = this.props.stations;
-        console.log("Floorplan.js, num stations: "+Object.keys(this.props.stations).length);
+        // console.log("Floorplan.js, num stations: "+Object.keys(this.props.stations).length);
         if (Object.keys(this.props.stations).length >= 3) {
             stationIcons = Object.keys(sta).map(key =>
                 <Station key={key} mac={key} x={sta[key].x} y={sta[key].y} setPosiotionCallback={this.stationPosition.bind(this)}></Station>

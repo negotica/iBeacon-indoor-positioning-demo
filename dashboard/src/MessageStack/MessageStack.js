@@ -63,8 +63,9 @@ class MessageContainer {
             clean: true
         });
         client.on('connect', function () {
+            console.log('Connected');
             client.subscribe(conf.channel);
-            client.publish(conf.channel, 'Dashboard is now listening.');
+            // client.publish(conf.channel, 'Dashboard is now listening.');
         });
         client.on('message', this.processMessage.bind(this));
         client.on('error', function () {
