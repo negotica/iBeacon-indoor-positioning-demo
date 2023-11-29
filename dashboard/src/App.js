@@ -17,6 +17,18 @@ class App extends Component {
             sortedBeacons: {},
             knownBeacons: [],
             stations: {},
+            actualStations: {
+                AC233FC0FA77: { x: 14, y: 270 },
+                AC233FC0FA82: { x: 64, y: 613 },
+                AC233FC0FA6F: { x: 238, y: 271 },
+                AC233FC0FAAB: { x: 254, y: 567 },
+                AC233FC0FA74: { x: 315, y: 465 },
+                AC233FC0FAA9: { x: 321, y: 290 },
+                AC233FC0FA81: { x: 460, y: 205 },
+                AC233FC0FA7D: { x: 506, y: 392 },
+                AC233FC0FAAA: { x: 388, y: 751 },
+                AC233FC0FA76: { x: 288, y: 754 },
+            },
             visible: false,
             width: 800,
             height: 600,
@@ -104,7 +116,7 @@ class App extends Component {
                     </Sidebar>
                     <Sidebar.Pusher>
                         <Container style={{ width: this.state.width + 'px', height: this.state.height + 'px' }} fluid>
-                            <Floorplan beacons={this.state.beacons} stations={this.state.stations} height={this.state.height} width={this.state.width} widthMeters={this.state.widthMeters} />
+                            <Floorplan beacons={this.state.beacons} stations={this.state.actualStations} height={this.state.height} width={this.state.width} widthMeters={this.state.widthMeters} />
                             <Icon style={{ position: 'absolute' }} onClick={this.toggleVisibility} className={'menubutton'} name='sidebar' size='large' />
                         </Container>
                     </Sidebar.Pusher>
