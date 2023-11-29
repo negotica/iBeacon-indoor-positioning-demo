@@ -25,7 +25,7 @@ class MessageContainer {
                 const station = msg[0].mac;
 
                 for (let i = 1; i < msg.length; i++) {
-                    let mac = msg[i].mac.toLowerCase();
+                    let mac = 'AC233FAD1B7D';
                     if (this.stations.includes(station)) {
 
                     } else {
