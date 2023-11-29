@@ -14,14 +14,15 @@ class Pin extends React.Component {
         let height = this.props.height || 40;
         return (
             <svg
-                 id={this.props.mac}
-                 viewBox={"0 0 " + width + " " + height}
-                 width={width}
-                 height={height}
-                 x={this.props.x}
-                 y={this.props.y}
+                id={this.props.mac}
+                viewBox={"0 0 " + (width + 40) + " " + (height + 40)}
+                width={width}
+                height={height}
+                x={this.props.x}
+                y={this.props.y}
             >
-                <StreetView preserveAspectRatio="xMaxYMax meet"/>
+                <StreetView preserveAspectRatio="xMaxYMax meet" />
+                <text x="-10px" y="35px">{this.props.mac.substr(9, 9).toUpperCase()}</text>
             </svg>
         );
     }

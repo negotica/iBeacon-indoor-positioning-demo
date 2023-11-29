@@ -16,22 +16,22 @@ class MessageContainer {
             let msg;
             try {
                 msg = JSON.parse(payload);
-            } catch (error){
+            } catch (error) {
                 msg = null;
                 console.log(error.message);
             }
 
-            if(msg !== null && msg[0] != null) {
+            if (msg !== null && msg[0] != null) {
                 const station = msg[0].mac;
 
-                for(let i=1; i<msg.length;i++) {
+                for (let i = 1; i < msg.length; i++) {
                     let mac = msg[i].mac.toLowerCase();
-                    if(this.stations.includes(station)) {
+                    if (this.stations.includes(station)) {
 
                     } else {
                         this.stations.push(station);
                     }
-                    if(this.stations.includes(mac)) {
+                    if (this.stations.includes(mac)) {
                         // Dont measure stations rssi
                         // with other stations.
                     } else {

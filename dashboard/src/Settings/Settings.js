@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import './Settings.css';
 
@@ -14,7 +14,7 @@ class SettingsSidemenu extends Component {
         var known = [];
 
         var allBeacons = this.props.beacons;
-        if(Object.keys(allBeacons).length > 0) {
+        if (Object.keys(allBeacons).length > 0) {
             all = Object.keys(allBeacons).map(key =>
                 <li key={allBeacons[key].mac}>{allBeacons[key].mac}</li>
             )

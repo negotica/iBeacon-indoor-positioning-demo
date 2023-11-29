@@ -1,6 +1,6 @@
 import trilat from "trilat/index.js";
 
-export const locate  = (beacon, stations, px_meter) => {
+export const locate = (beacon, stations, px_meter) => {
 
     // ITAG -70 ... -94
     // Samsung -73 ... -95
@@ -12,8 +12,8 @@ export const locate  = (beacon, stations, px_meter) => {
     function calculateDistance(rssi) {
         let P = -69; // @TODO This value should come from MQTT message
         let n = 3;
-        let d = Math.pow(10, ((P-rssi) / (10*n)) ); //(n ranges from 2 to 4)
-        return d*px_meter;
+        let d = Math.pow(10, ((P - rssi) / (10 * n))); //(n ranges from 2 to 4)
+        return d * px_meter;
     }
 
     var keysSorted = Object.keys(beacon).sort(function (a, b) {
@@ -23,9 +23,9 @@ export const locate  = (beacon, stations, px_meter) => {
 
     let input = [
         //      X     Y     R
-        [ parseInt(stations[keysSorted[0]].x, 10), parseInt(stations[keysSorted[0]].y, 10), calculateDistance(beacon[keysSorted[0]].rssi)],
-        [ parseInt(stations[keysSorted[1]].x, 10), parseInt(stations[keysSorted[1]].y, 10), calculateDistance(beacon[keysSorted[1]].rssi)],
-        [ parseInt(stations[keysSorted[2]].x, 10), parseInt(stations[keysSorted[2]].y, 10), calculateDistance(beacon[keysSorted[2]].rssi)]
+        [parseInt(stations[keysSorted[0]].x, 10), parseInt(stations[keysSorted[0]].y, 10), calculateDistance(beacon[keysSorted[0]].rssi)],
+        [parseInt(stations[keysSorted[1]].x, 10), parseInt(stations[keysSorted[1]].y, 10), calculateDistance(beacon[keysSorted[1]].rssi)],
+        [parseInt(stations[keysSorted[2]].x, 10), parseInt(stations[keysSorted[2]].y, 10), calculateDistance(beacon[keysSorted[2]].rssi)]
     ];
 
     let output = trilat(input);
