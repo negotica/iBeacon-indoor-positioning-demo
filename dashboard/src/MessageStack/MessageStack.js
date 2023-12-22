@@ -25,7 +25,9 @@ class MessageContainer {
                 const station = msg[0].mac;
 
                 for (let i = 1; i < msg.length; i++) {
-                    let mac = 'AC233FAD1B7D';
+                    const mac = 'AC233FAD1B7D';
+                    const buttonPressed = msg[i].rawData.toLowerCase().startsWith('0201061aff4c000215');
+
                     if (this.stations.includes(station)) {
 
                     } else {
@@ -35,20 +37,25 @@ class MessageContainer {
                         // Dont measure stations rssi
                         // with other stations.
                     } else {
-                        if (typeof this.beacons[mac] !== 'object') {
-                            // Initialize
-                            this.beacons[mac] = {};
-                        } else if (typeof this.beacons[mac][station] === 'object') {
-                            // Remove old record
-                            delete this.beacons[mac][station];
-                        }
-                        // Insert new record
-                        this.beacons[mac][station] = {
-                            rssi: parseInt(msg[i].rssi, 10),
-                            timestamp: Math.floor(Date.now() / 1000)
+                        if (buttonPressed) {
+                            if (typeof this.beacons[mac] !== 'object') {
+                                // Initialize
+                                this.beacons[mac] = {};
+                            } else if (typeof this.beacons[mac][station] === 'object') {
+                                // Remove old record
+                                delete this.beacons[mac][station];
+                            }
+                            // Insert new record
+                            this.beacons[mac][station] = {
+                                rssi: parseInt(msg[i].rssi, 10),
+                                timestamp: Math.floor(Date.now() / 1000)
+                            }
                         }
                     }
-                    this.callbackFunc(this.beacons);
+                    if (buttonPressed) {
+                        this.callbackFunc(this.beacons);
+                    }
+
                 }
             }
         };
